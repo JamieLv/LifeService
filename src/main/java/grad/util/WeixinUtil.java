@@ -196,13 +196,13 @@ public class WeixinUtil {
         String post = "\n" +
                 "{\n" +
                 "\"tag\":{\n" +
-                "\"name\":\"读者+职工\"}\n" +
+                "\"name\":\"登录\"}\n" +
                 "}";
         String url = "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=" + accessToken;
         String jsonGroup = JSONObject.fromObject(post).toString();
         JSONObject jsonObject = httpRequest(url, "POST", jsonGroup);
 
-        System.out.println("WeixinManager.createGroup()"+jsonObject.toString());
+        System.out.println("WeixinManager.creatTag()"+jsonObject.toString());
 
         return result;
     }
@@ -250,7 +250,7 @@ public class WeixinUtil {
         return result;
     }
 
-    public static int batchReaderTag(String accessToken, String fromUserName){
+    public static int batchTag(String accessToken, String fromUserName){ // 登录
         int result = 0;
         String post = "\n" +
                 "{\n" +
@@ -263,12 +263,12 @@ public class WeixinUtil {
         String jsonGroup = JSONObject.fromObject(post).toString();
         JSONObject jsonObject = httpRequest(url, "POST", jsonGroup);
 
-        System.out.println("WeixinManager.batchreadertag()"+jsonObject.toString());
+        System.out.println("WeixinManager.batchLogin()"+jsonObject.toString());
 
         return result;
     }
 
-    public static int removeReaderTag(String accessToken, String fromUserName){
+    public static int removeTag(String accessToken, String fromUserName){ // 登出
         int result = 0;
         String post = "\n" +
                 "{\n" +
@@ -281,79 +281,7 @@ public class WeixinUtil {
         String jsonGroup = JSONObject.fromObject(post).toString();
         JSONObject jsonObject = httpRequest(url, "POST", jsonGroup);
 
-        System.out.println("WeixinManager.removeUserTag()"+jsonObject.toString());
-
-        return result;
-    }
-
-    public static int batchReturnWorkerTag(String accessToken, String fromUserName){
-        int result = 0;
-        String post = "\n" +
-                "{\n" +
-                "\"openid_list\":[\n" +
-                "\"" + fromUserName + "\"\n" +
-                "],\n" +
-                "\"tagid\":101\n" +
-                "}";
-        String url = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=" + accessToken;
-        String jsonGroup = JSONObject.fromObject(post).toString();
-        JSONObject jsonObject = httpRequest(url, "POST", jsonGroup);
-
-        System.out.println("WeixinManager.batchworkertag()"+jsonObject.toString());
-
-        return result;
-    }
-
-    public static int removeReturnWorkerTag(String accessToken, String fromUserName){
-        int result = 0;
-        String post = "\n" +
-                "{\n" +
-                "\"openid_list\":[\n" +
-                "\"" + fromUserName + "\"\n" +
-                "],\n" +
-                "\"tagid\":101\n" +
-                "}";
-        String url = "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=" + accessToken;
-        String jsonGroup = JSONObject.fromObject(post).toString();
-        JSONObject jsonObject = httpRequest(url, "POST", jsonGroup);
-
-        System.out.println("WeixinManager.removeUserTag()"+jsonObject.toString());
-
-        return result;
-    }
-
-    public static int batchAddWorkerTag(String accessToken, String fromUserName){
-        int result = 0;
-        String post = "\n" +
-                "{\n" +
-                "\"openid_list\":[\n" +
-                "\"" + fromUserName + "\"\n" +
-                "],\n" +
-                "\"tagid\":102\n" +
-                "}";
-        String url = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=" + accessToken;
-        String jsonGroup = JSONObject.fromObject(post).toString();
-        JSONObject jsonObject = httpRequest(url, "POST", jsonGroup);
-
-        System.out.println("WeixinManager.batchreaderworkertag()"+jsonObject.toString());
-
-        return result;
-    }
-
-    public static int removeAddrWorkerTag(String accessToken, String fromUserName){
-        int result = 0;
-        String post = "\n" +
-                "{\n" +
-                "\"openid_list\":[\n" +
-                "\"" + fromUserName + "\"\n" +
-                "],\n" +
-                "\"tagid\":102\n" +
-                "}";
-        String url = "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=" + accessToken;
-        String jsonGroup = JSONObject.fromObject(post).toString();
-        JSONObject jsonObject = httpRequest(url, "POST", jsonGroup);
-
-        System.out.println("WeixinManager.removeUserTag()"+jsonObject.toString());
+        System.out.println("WeixinManager.removeLogoff()"+jsonObject.toString());
 
         return result;
     }

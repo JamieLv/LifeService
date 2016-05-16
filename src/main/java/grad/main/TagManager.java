@@ -12,8 +12,8 @@ import static grad.util.WeixinUtil.getUserTagID;
 public class TagManager {
 
     public static void main(String[] args) throws ParseException {
-        String appId = "wxe13392d6482304c4";
-        String appSecret = "41b6c04d9ac9819c779a186e0d6908ab";
+        String appId = "wx973b5122c345d995";
+        String appSecret = "1f35fa93bbd21317802a0ebafdb4db70";
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
 
         if (at != null) {
@@ -27,38 +27,26 @@ public class TagManager {
     }
 
     public static boolean batchtagging(String fromUserName, String request){
-        String appId = "wxe13392d6482304c4";
-        String appSecret = "41b6c04d9ac9819c779a186e0d6908ab";
+        String appId = "wx973b5122c345d995";
+        String appSecret = "1f35fa93bbd21317802a0ebafdb4db70";
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
 
         if (at != null) {
             if (request.equals("Member")){
-                WeixinUtil.batchReaderTag(at.getToken(), fromUserName);
-            }
-            else if (request.equals("还书管理员")){
-                WeixinUtil.batchReturnWorkerTag(at.getToken(), fromUserName);
-            }
-            else if (request.equals("增书管理员")){
-                WeixinUtil.batchAddWorkerTag(at.getToken(), fromUserName);
+                WeixinUtil.batchTag(at.getToken(), fromUserName);
             }
         }
         return true;
     }
 
     public static boolean batchuntagging(String fromUserName, String request){
-        String appId = "wxe13392d6482304c4";
-        String appSecret = "41b6c04d9ac9819c779a186e0d6908ab";
+        String appId = "wx973b5122c345d995";
+        String appSecret = "1f35fa93bbd21317802a0ebafdb4db70";
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
 
         if (at != null) {
             if (request.equals("Member")){
-                WeixinUtil.removeReaderTag(at.getToken(), fromUserName);
-            }
-            else if (request.equals("还书管理员")){
-                WeixinUtil.removeReturnWorkerTag(at.getToken(), fromUserName);
-            }
-            else if (request.equals("增书管理员")){
-                WeixinUtil.removeAddrWorkerTag(at.getToken(), fromUserName);
+                WeixinUtil.removeTag(at.getToken(), fromUserName);
             }
         }
         return true;

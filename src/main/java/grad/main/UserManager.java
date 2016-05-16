@@ -13,8 +13,8 @@ import java.util.List;
 public class UserManager {
 
     public static void main(String[] args) throws ParseException {
-        String appId = "wxe13392d6482304c4";
-        String appSecret = "41b6c04d9ac9819c779a186e0d6908ab";
+        String appId = "wx973b5122c345d995";
+        String appSecret = "1f35fa93bbd21317802a0ebafdb4db70";
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
 
         List<JSONObject> User_InfoList = WeixinUtil.getUserInfo("oog9Zv85WcOoYRCuOPwYb6KIVgHI", at.getToken());
@@ -25,8 +25,8 @@ public class UserManager {
     }
 
     public static JSONObject getUser_Info(String fromUserName){
-        String appId = "wxe13392d6482304c4";
-        String appSecret = "41b6c04d9ac9819c779a186e0d6908ab";
+        String appId = "wx973b5122c345d995";
+        String appSecret = "1f35fa93bbd21317802a0ebafdb4db70";
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);
 
         List<JSONObject> User_InfoList = WeixinUtil.getUserInfo(fromUserName, at.getToken());

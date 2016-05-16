@@ -2,7 +2,6 @@ package grad.servlet;
 
 import grad.database.Database;
 import grad.database.Member_Info;
-import grad.service.BorrowReminder;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -31,12 +30,12 @@ public class ReminderServlet implements ServletContextListener {
                 List<Member_Info> member_infoList = Database.getAllMember_Info();
                 try {
                     for (Member_Info member_info : member_infoList) {
-                        if (Database.getBook_StatebyBorrower(member_info.getMember_ID()) != null
-                                && Database.Borrower_RemindNeed(member_info.getMember_fromUserName()) != 1) {
-                                BorrowReminder.BorrowReminderTemplate(member_info.getMember_fromUserName());
-                        }
+//                        if (Database.getBook_StatebyBorrower(member_info.getMember_ID()) != null
+//                                && Database.Borrower_RemindNeed(member_info.getMember_fromUserName()) != 1) {
+//                                BorrowReminder.BorrowReminderTemplate(member_info.getMember_fromUserName());
+//                        }
                     }
-                } catch (ParseException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

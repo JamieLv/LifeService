@@ -22,7 +22,7 @@ public class SendMsg_webchinese {
         NameValuePair[] data = { new NameValuePair("Uid", "jdquanyi"),// 注册的用户名
                 new NameValuePair("Key", "82594d54b061255b1d6d"),// 注册成功后，登录网站后得到的密钥
                 new NameValuePair("smsMob", mobile),// 手机号码
-                new NameValuePair("smsText", "尊敬的读者您好，您的验证码为：yzm " + id) };// 短信内容
+                new NameValuePair("smsText", "尊敬的用户您好，您的验证码为：yzm " + id) };// 短信内容
         post.setRequestBody(data);
 
         client.executeMethod(post);

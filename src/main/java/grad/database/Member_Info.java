@@ -20,6 +20,8 @@ public class Member_Info {
     String Member_RegisterTime;
     String Member_fromUserName;
     Boolean Member_Verification;
+    String Location_X;
+    String Location_Y;
 
     public Member_Info(){}
 
@@ -97,5 +99,21 @@ public class Member_Info {
 
     public void setMember_Verification(Boolean member_Verification) {
         Member_Verification = member_Verification;
+    }
+
+    public String getLocation_X() {
+        return Location_X;
+    }
+
+    public void setLocation_X(String location_X) {
+        Location_X = location_X;
+    }
+
+    public String getLocation_Y() {
+        return Location_Y;
+    }
+
+    public void setLocation_Y(String location_Y) {
+        Location_Y = location_Y;
     }
 }

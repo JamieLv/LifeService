@@ -16,8 +16,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 
-import javax.xml.stream.Location;
-
 
 /**
  * Created by Jamie on 4/22/16.
@@ -69,9 +67,9 @@ public class BaiduMapAPI {
         return null;
     }
 
-    public static List<JSONObject> getLibraryfrom(String Location_X, String Location_Y) throws IOException {
+    public static List<JSONObject> getNearbyInfo(String Location_X, String Location_Y, String request) throws IOException {
         //http://api.map.baidu.com/place/v2/search?query=%E5%9B%BE%E4%B9%A6%E9%A6%86&output=json&ak=HAWvDthwbrBM8itvGawZ2E99EQTIg5qf&page_size=10&page_num=0&scope=1&location=31.207432,121.419617&radius=2000
-        URL url = new URL("http://api.map.baidu.com/place/v2/search?query=图书馆&output=json" +
+        URL url = new URL("http://api.map.baidu.com/place/v2/search?query=" + request + "&output=json" +
                 "&ak=" + ak +
                 "&page_size=5&page_num=0&scope=2&" +
 //                "location=39.915,116.404&radius=2000");
@@ -98,21 +96,21 @@ public class BaiduMapAPI {
         JSONObject jsonObject = JSONObject.fromObject(str);
         JSONArray resultsList = jsonObject.getJSONArray("results");
         System.out.println(resultsList);
-        List<JSONObject> Library_Info = new ArrayList<>();
+        List<JSONObject> Nearby_Info = new ArrayList<>();
         for (Object jsonObj : resultsList) {
-            Library_Info.add(JSONObject.fromObject(jsonObj));
+            Nearby_Info.add(JSONObject.fromObject(jsonObj));
         }
 //        System.out.println(Library_Info.get(1).get("address"));
-        return Library_Info;
+        return Nearby_Info;
     }
 
-
-    public static void main(String[] args) throws IOException {
-        List<JSONObject> resultsList = getLibraryfrom("1", "1");
-        for (JSONObject tmpObj: resultsList){
-            System.out.println(tmpObj.get("name"));
-        }
-        System.out.println(testPost("39.915", "116.404").get("city"));
-    }
+//
+//    public static void main(String[] args) throws IOException {
+//        List<JSONObject> resultsList = getNearbyInfo("1", "1");
+//        for (JSONObject tmpObj: resultsList){
+//            System.out.println(tmpObj.get("name"));
+//        }
+//        System.out.println(testPost("39.915", "116.404").get("city"));
+//    }
 
 }

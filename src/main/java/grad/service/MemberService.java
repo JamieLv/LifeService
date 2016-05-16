@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class MemberService {
     public static void MemberTemplate(Member_Info member_info){
-        String appId = "wxe13392d6482304c4";
-        String appSecret = "41b6c04d9ac9819c779a186e0d6908ab";
+        String appId = "wx973b5122c345d995";
+        String appSecret = "1f35fa93bbd21317802a0ebafdb4db70";
         String accessToken = WeixinUtil.
                 getAccessToken(appId, appSecret)
                 .getToken();
