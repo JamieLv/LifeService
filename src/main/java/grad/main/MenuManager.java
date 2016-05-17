@@ -122,12 +122,12 @@ public class MenuManager {
         btn12.setKey(CommonButton.KEY_LOG_OFF);
 
         CommonButton btn2 = new CommonButton();
-        btn2.setName(l == 0 ? "附近的图书馆" : "Nearby Library");
+        btn2.setName(l == 0 ? "附近" : "Nearby");
         btn2.setType("location_select");
         btn2.setKey(CommonButton.KEY_NEARBY);
 
         CommonButton btn3 = new CommonButton();
-        btn3.setName(l == 0 ? "官网" : "Official Website");
+        btn3.setName(l == 0 ? "官网" : "Official Site");
         btn3.setType("view");
         btn3.setUrl("http://sse.tongji.edu.cn/zh");
 
@@ -156,12 +156,12 @@ public class MenuManager {
         btn12.setKey(CommonButton.KEY_LOG_OFF);
 
         CommonButton btn2 = new CommonButton();
-        btn2.setName(l == 0 ? "附近的图书馆" : "Nearby Library");
+        btn2.setName(l == 0 ? "附近" : "Nearby");
         btn2.setType("location_select");
         btn2.setKey(CommonButton.KEY_NEARBY);
 
         CommonButton btn3 = new CommonButton();
-        btn3.setName(l == 0 ? "官网" : "Official Website");
+        btn3.setName(l == 0 ? "官网" : "Official Site");
         btn3.setType("view");
         btn3.setUrl("http://sse.tongji.edu.cn/zh");
 

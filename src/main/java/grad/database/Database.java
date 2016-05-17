@@ -87,7 +87,7 @@ public class Database {
      */
 
     // 更新手机号
-    public static boolean UpdateReaderInfo(String Member_fromUserName, Member_Info new_member_info){
+    public static boolean UpdateMemberInfo(String Member_fromUserName, Member_Info new_member_info){
         int Member_ID = getMember_Info(Member_fromUserName).getMember_ID();
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -216,7 +216,7 @@ public class Database {
 
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery(String.format("from Member_Info where Member_ID = '%s'", Member_ID));
+        Query query = session.createQuery(String.format("from Member_Info where member_ID = '%s'", Member_ID));
         Member_Info member_info = null;
         if (query.list().size() > 0) {
             member_info = (Member_Info) query.list().get(0);

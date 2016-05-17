@@ -1,7 +1,6 @@
 package grad.service;
 
 import grad.database.*;
-import grad.main.ArticleManager;
 import grad.main.TagManager;
 import grad.main.UserManager;
 import grad.message.resp.Article;
@@ -67,7 +66,7 @@ public class CoreService {
                     } else if (tag == 1) { // 用户已登记，手机验证未通过
                         Member_Info new_member_info = new Member_Info(
                                 keywords[0], keywords[1], Integer.parseInt(keywords[2]), keywords[3], Database.getDate(0), fromUserName, false);
-                        Database.UpdateReaderInfo(fromUserName, new_member_info);
+                        Database.UpdateMemberInfo(fromUserName, new_member_info);
                         int yzm = Database.getMember_Info(fromUserName).getMember_ID();
                         SendMsg_webchinese sendMsg = new SendMsg_webchinese();
                         sendMsg.send(keywords[3], yzm);
