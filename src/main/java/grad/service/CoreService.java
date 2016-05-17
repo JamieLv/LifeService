@@ -55,6 +55,7 @@ public class CoreService {
                             Member_Info new_member_info = new Member_Info(
                                     keywords[0], keywords[1], Integer.parseInt(keywords[2]), keywords[3], Database.getDate(0), fromUserName, false);
                             Database.Add(new_member_info);
+                            System.out.println(new_member_info);
 
                             int yzm = Database.getMember_Info(fromUserName).getMember_ID();
                             SendMsg_webchinese sendMsg = new SendMsg_webchinese();
