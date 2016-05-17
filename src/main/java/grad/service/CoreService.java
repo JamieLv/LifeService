@@ -45,67 +45,74 @@ public class CoreService {
     public static String Register(String fromUserName, String[] keywords) throws IOException {
         String respContent = "请求处理异常，请稍候尝试！";
         try {
-            int tag = Database.MemberExist(fromUserName);
 
-            if (tag == 0) {  // 第一次注册
-                // String Member_Name, String Member_Gender, int Member_Age, String Member_Mobile, String Member_RegisterTime, String Member_fromUserName, Boolean Member_Verification
-                if (Database.getMember_InfobyMember_Mobile(keywords[3]) == null) {
-                    Member_Info new_member_info = new Member_Info(
-                            keywords[0], keywords[1], Integer.parseInt(keywords[2]), keywords[3], Database.getDate(0), fromUserName, false);
-                    Database.Add(new_member_info);
+            if (keywords.length == 4) {
+                try {
+                    int tag = Database.MemberExist(fromUserName);
+                    if (tag == 0) {  // 第一次注册
+                        // String Member_Name, String Member_Gender, int Member_Age, String Member_Mobile, String Member_RegisterTime, String Member_fromUserName, Boolean Member_Verification
+                        if (Database.getMember_InfobyMember_Mobile(keywords[3]) == null) {
+                            Member_Info new_member_info = new Member_Info(
+                                    keywords[0], keywords[1], Integer.parseInt(keywords[2]), keywords[3], Database.getDate(0), fromUserName, false);
+                            Database.Add(new_member_info);
 
-                    int yzm = Database.getMember_Info(fromUserName).getMember_ID();
-                    SendMsg_webchinese sendMsg = new SendMsg_webchinese();
-                    sendMsg.send(keywords[3], yzm);
-                    respContent = "尊敬的用户，请输入您收到的短信验证码，仿照格式: yzm 1";
-                } else { respContent = "尊敬的用户，该手机号已被注册。如有疑问请直接回复，我们将尽快回复，谢谢配合。"; }
-            } else if (tag == 1) { // 用户已登记，手机验证未通过
-                Member_Info new_member_info = new Member_Info(
-                        keywords[0], keywords[1], Integer.parseInt(keywords[2]), keywords[3], Database.getDate(0), fromUserName, false);
-                Database.UpdateReaderInfo(fromUserName, new_member_info);
-                int yzm = Database.getMember_Info(fromUserName).getMember_ID();
-                SendMsg_webchinese sendMsg = new SendMsg_webchinese();
-                sendMsg.send(keywords[3], yzm);
-                respContent = "尊敬的用户，请输入您收到的短信验证码，仿照格式: \"yzm 1\"";
-            } else if (tag == 2) { // 已登记，手机验证通过
-                respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
-            }
-        } catch (Exception e) { // 格式有误
-            respContent = "尊敬的用户，您输入的信息有误，请核对后重新输入！仿照格式: \"张三 男 20 13112345678\"。\n" +
-                    "我们将发送验证短信至您填写的手机号，所以请务必填写正确的手机号，谢谢配合。";
-        }
-
-        if (keywords[0].equals("yzm")) { // yzm 1
-            if (keywords.length == 2) {
-                String str_yzm = keywords[1];
-                int i_yzm = Integer.parseInt(str_yzm); // 获取验证码并转换成原型
-                int tag = Database.MemberExist(fromUserName);
-                if (tag == 0) {
-                    respContent = "尊敬的用户，您还没有输入您的基本信息吧！\n"
-                            + "请严格按照这个格式进行回复： \n"
-                            + "姓名 性别 年龄 手机号\n"
-                            + "60秒内将会收到有验证码的短信。\n"
-                            + "到时请将验证码回复给微信平台，谢谢配合。";
-                } else if (tag == 1) {
-                    if (i_yzm == Database.getMember_Info(fromUserName).getMember_ID()) {
-                        Database.UpdateMember_Verification(fromUserName, true);
-                        respContent = "恭喜您验证成功！请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
-                    } else {
-                        respContent = "尊敬的用户，验证码输入有误，请仔细核对！\n"
-                                + "或者再次按照以下格式进行回复： \n"
+                            int yzm = Database.getMember_Info(fromUserName).getMember_ID();
+                            SendMsg_webchinese sendMsg = new SendMsg_webchinese();
+                            sendMsg.send(keywords[3], yzm);
+                            respContent = "尊敬的用户，请输入您收到的短信验证码，仿照格式: yzm 1";
+                        } else {
+                            respContent = "尊敬的用户，该手机号已被注册。如有疑问请直接回复，我们将尽快回复，谢谢配合。";
+                        }
+                    } else if (tag == 1) { // 用户已登记，手机验证未通过
+                        Member_Info new_member_info = new Member_Info(
+                                keywords[0], keywords[1], Integer.parseInt(keywords[2]), keywords[3], Database.getDate(0), fromUserName, false);
+                        Database.UpdateReaderInfo(fromUserName, new_member_info);
+                        int yzm = Database.getMember_Info(fromUserName).getMember_ID();
+                        SendMsg_webchinese sendMsg = new SendMsg_webchinese();
+                        sendMsg.send(keywords[3], yzm);
+                        respContent = "尊敬的用户，请输入您收到的短信验证码，仿照格式: \"yzm 1\"";
+                    } else if (tag == 2) { // 已登记，手机验证通过
+                        respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
+                    }
+                } catch (Exception e) { // 格式有误
+                    respContent = "尊敬的用户，您输入的信息有误，请核对后重新输入！仿照格式: \"张三 男 20 13112345678\"。\n" +
+                            "我们将发送验证短信至您填写的手机号，所以请务必填写正确的手机号，谢谢配合。";
+                }
+            } else if (keywords[0].equals("yzm")) { // yzm 1
+                if (keywords.length == 2) {
+                    String str_yzm = keywords[1];
+                    int i_yzm = Integer.parseInt(str_yzm); // 获取验证码并转换成原型
+                    int tag = Database.MemberExist(fromUserName);
+                    if (tag == 0) {
+                        respContent = "尊敬的用户，您还没有输入您的基本信息吧！\n"
+                                + "请严格按照这个格式进行回复： \n"
                                 + "姓名 性别 年龄 手机号\n"
                                 + "60秒内将会收到有验证码的短信。\n"
                                 + "到时请将验证码回复给微信平台，谢谢配合。";
+                    } else if (tag == 1) {
+                        if (i_yzm == Database.getMember_Info(fromUserName).getMember_ID()) {
+                            Database.UpdateMember_Verification(fromUserName, true);
+                            respContent = "恭喜您验证成功！请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
+                        } else {
+                            respContent = "尊敬的用户，验证码输入有误，请仔细核对！\n"
+                                    + "或者再次按照以下格式进行回复： \n"
+                                    + "姓名 性别 年龄 手机号\n"
+                                    + "60秒内将会收到有验证码的短信。\n"
+                                    + "到时请将验证码回复给微信平台，谢谢配合。";
+                        }
+                    } else { // 验证已通过
+                        respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
                     }
-                } else { // 验证已通过
-                    respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
+                } else {
+                    respContent = "验证码格式错误，请仿照格式: \"yzm 1\"回复，谢谢配合。";
                 }
-            } else {
-                respContent = "验证码格式错误，请仿照格式: \"yzm 1\"回复，谢谢配合。";
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return respContent;
     }
+
 
     public static String processRequest(HttpServletRequest request) {
         String respMessage = null;
