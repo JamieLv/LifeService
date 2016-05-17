@@ -22,7 +22,7 @@ public class TagManager {
             if (op.equals("get")){WeixinUtil.getAllTag(at.getToken());}
             if (op.equals("del")){WeixinUtil.deleteTag(at.getToken());}
             if (op.equals("up")){WeixinUtil.updateTag(at.getToken());}
-            System.out.println(getUserTagID(at.getToken(), "oog9Zv85WcOoYRCuOPwYb6KIVgHI"));
+//            System.out.println(getUserTagID(at.getToken(), "oog9Zv85WcOoYRCuOPwYb6KIVgHI"));
         }
     }
 

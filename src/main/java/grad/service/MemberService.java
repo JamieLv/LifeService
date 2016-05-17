@@ -23,7 +23,7 @@ public class MemberService {
                 accessToken;
 
         TemplateMessage MemberInfo = new TemplateMessage();
-        MemberInfo.setTemplate_id("sa_Y1QNXIyOimV6wv4iRURiMyTtoxONHombuYEje29I");
+        MemberInfo.setTemplate_id("oVwDL-cfUYtS-Q8kqDMfMBoVyl_ANUbErBAvtYjpnVg");
 //        MemberInfo.setUrl("http://weixin.qq.com/download");
         MemberInfo.setTopcolor("#000000");
         MemberInfo.setTouser(member_info.getMember_fromUserName());
