@@ -1,6 +1,7 @@
 package grad.service;
 
 import grad.database.*;
+import grad.main.ArticleManager;
 import grad.main.TagManager;
 import grad.main.UserManager;
 import grad.message.resp.Article;
@@ -69,7 +70,7 @@ public class CoreService {
             } else if (tag == 2) { // 已登记，手机验证通过
                 respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
             }
-        } catch (NumberFormatException e) { // 格式有误
+        } catch (Exception e) { // 格式有误
             respContent = "尊敬的用户，您输入的信息有误，请核对后重新输入！仿照格式: \"张三 男 20 13112345678\"。\n" +
                     "我们将发送验证短信至您填写的手机号，所以请务必填写正确的手机号，谢谢配合。";
         }
@@ -309,7 +310,8 @@ public class CoreService {
             respMessage = MessageUtil.textMessageToXml(textMessage);
         }
          catch (Exception e) {
-            e.printStackTrace();
+             e.printStackTrace();
+             return "";
         }
         return respMessage;
     }
