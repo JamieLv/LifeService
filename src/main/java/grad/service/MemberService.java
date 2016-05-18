@@ -23,7 +23,7 @@ public class MemberService {
                 accessToken;
 
         TemplateMessage MemberInfo = new TemplateMessage();
-        MemberInfo.setTemplate_id("oVwDL-cfUYtS-Q8kqDMfMBoVyl_ANUbErBAvtYjpnVg");
+        MemberInfo.setTemplate_id("uR-eEuGzQwT5NHebkArlTfVDYqPtl0YHSIAv4EuFxXA");
 //        MemberInfo.setUrl("http://weixin.qq.com/download");
         MemberInfo.setTopcolor("#000000");
         MemberInfo.setTouser(member_info.getMember_fromUserName());
@@ -59,6 +59,11 @@ public class MemberService {
         RegisterTime.setValue(member_info.getMember_RegisterTime());
         RegisterTime.setColor("#FF0000");
         data.put("RegisterTime", RegisterTime);
+
+        TemplateData Remind = new TemplateData();
+        Remind.setValue("5分钟后功能将正常开启，请耐心等待。");
+        Remind.setColor("#0000FF");
+        data.put("Remind", Remind);
 
         MemberInfo.setData(data);
         String jsonNote = JSONObject.fromObject(MemberInfo).toString();

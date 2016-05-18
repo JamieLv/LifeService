@@ -72,7 +72,7 @@ public class CoreService {
                         sendMsg.send(keywords[3], yzm);
                         respContent = "尊敬的用户，请输入您收到的短信验证码，仿照格式: \"yzm 1\"";
                     } else if (tag == 2) { // 已登记，手机验证通过
-                        respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
+                        respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现会员卡后请稍等5分钟，之后可进行正常操作，谢谢配合。";
                     }
                 } catch (Exception e) { // 格式有误
                     respContent = "尊敬的用户，您输入的信息有误，请核对后重新输入！仿照格式: \"张三 男 20 13112345678\"。\n" +
@@ -92,7 +92,7 @@ public class CoreService {
                     } else if (tag == 1) {
                         if (i_yzm == Database.getMember_Info(fromUserName).getMember_ID()) {
                             Database.UpdateMember_Verification(fromUserName, true);
-                            respContent = "恭喜您验证成功！请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
+                            respContent = "恭喜您验证成功！请点击\"登录\"按钮进行登录，出现会员卡后请稍等5分钟，之后可进行正常操作，谢谢配合。";
                         } else {
                             respContent = "尊敬的用户，验证码输入有误，请仔细核对！\n"
                                     + "或者再次按照以下格式进行回复： \n"
@@ -101,7 +101,7 @@ public class CoreService {
                                     + "到时请将验证码回复给微信平台，谢谢配合。";
                         }
                     } else { // 验证已通过
-                        respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现读者证后请稍等10分钟，之后可进行正常操作，谢谢配合。";
+                        respContent = "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现会员卡后请稍等5分钟，之后可进行正常操作，谢谢配合。";
                     }
                 } else {
                     respContent = "验证码格式错误，请仿照格式: \"yzm 1\"回复，谢谢配合。";
@@ -276,7 +276,8 @@ public class CoreService {
                         int Subscriber_ID = subscriber_info.getSubscriber_ID();
                         db.UpdateSubscriber_Function(Subscriber_ID, "register");
 
-                        respContent = "请输入\"姓名 性别 年龄 手机号\"注册，谢谢。";
+                        respContent = member_info == null ? "请输入\"姓名 性别 年龄 手机号\"注册，谢谢。" :
+                                "尊敬的用户，您已完成注册，请点击\"登录\"按钮进行登录，出现会员卡后请稍等10分钟，之后可进行正常操作，谢谢配合。";
 
                     } else if (eventKey.equals(CommonButton.KEY_LOGIN)) {
                         int Subscriber_ID = subscriber_info.getSubscriber_ID();
