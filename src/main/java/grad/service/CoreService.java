@@ -303,11 +303,11 @@ public class CoreService {
                         }
 
                     } else if (eventKey.equals(CommonButton.KEY_MEMBERSHIP)) {
-                        MemberService.MemberTemplate(member_info);
+                        LoginService.LoginTemplate(member_info);
                         return "";
                     } else if (eventKey.equals(CommonButton.KEY_LOG_OFF)) {
                         TagManager.batchuntagging(fromUserName, "Member");
-                        respContent = "退出成功";
+                        respContent = "会员【" + member_info.getMember_Name() + "】退出成功";
                     }
                 } else if (eventType.equals(MessageUtil.EVENT_TYPE_SCANCODE_WAITMSG)) {
 
